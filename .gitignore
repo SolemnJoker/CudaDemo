@@ -240,3 +240,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/CudaDemo.vcxproj
+/CudaDemo.sln
+/GridAndBlock/GridAndBlock.vcxproj
+/GridAndBlock/GridAndBlock.vcxproj.filters
