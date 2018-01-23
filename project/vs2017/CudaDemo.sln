@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GridAndBlock", "GridAndBlock\GridAndBlock.vcxproj", "{C76516DE-6BAA-422C-8F09-C392630EBB46}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExecutionModel", "ExecutionModel\ExecutionModel.vcxproj", "{104669B2-BB8E-42DC-AB81-2896A9398A9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{C76516DE-6BAA-422C-8F09-C392630EBB46}.Release|x64.ActiveCfg = Release|x64
 		{C76516DE-6BAA-422C-8F09-C392630EBB46}.Release|x64.Build.0 = Release|x64
 		{C76516DE-6BAA-422C-8F09-C392630EBB46}.Release|x64.Deploy.0 = Release|x64
+		{104669B2-BB8E-42DC-AB81-2896A9398A9D}.Debug|x64.ActiveCfg = Debug|x64
+		{104669B2-BB8E-42DC-AB81-2896A9398A9D}.Debug|x64.Build.0 = Debug|x64
+		{104669B2-BB8E-42DC-AB81-2896A9398A9D}.Release|x64.ActiveCfg = Release|x64
+		{104669B2-BB8E-42DC-AB81-2896A9398A9D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
