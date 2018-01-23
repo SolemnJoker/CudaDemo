@@ -2,4 +2,4 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size);
+void addWithCuda(float* mat_a,float* mat_b,float* mat_c,int nx,int ny);

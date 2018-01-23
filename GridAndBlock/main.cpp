@@ -1,29 +1,51 @@
 #include "cudaheader.h"
+#include "commen.h"
 #include <vector>
+void initData(std::vector<float>& arr)
+{
+	for (auto& v:arr)
+	{
+		v = (rand()&0xFF)/10.0f;
+	}
+}
 int main()
 {
-    const int arraySize = 5;
-    const int a[arraySize] = { 1, 2, 3, 4, 5 };
-    const int b[arraySize] = { 10, 20, 30, 40, 50 };
-    int c[arraySize] = { 0 };
+	const int nx = 1 << 12;
+	const int ny = 1 << 12;
+    const int arraySize = 1<<24;
+	const int bytesSize = arraySize * sizeof(float);
+    std::vector<float> a(arraySize);
+    std::vector<float> b(arraySize);
+    std::vector<float> c(arraySize,0.0f);
+	initData(a);
+	initData(b);
+	float *dev_a = 0;
+    float *dev_b = 0;
+    float *dev_c = 0;
+	auto release = [&]() {
+		cudaFree(dev_a);
+		cudaFree(dev_b);
+		cudaFree(dev_c);
+	};
 
-    // Add vectors in parallel.
-    cudaError_t cudaStatus = addWithCuda(c, a, b, arraySize);
-    if (cudaStatus != cudaSuccess) {
-        fprintf(stderr, "addWithCuda failed!");
-        return 1;
-    }
+	CHECK(cudaSetDevice(0));
+	CHECK_WITH_RELEASED(cudaMalloc(&dev_a, bytesSize), release);
+	CHECK_WITH_RELEASED(cudaMalloc(&dev_b, bytesSize), release);
+	CHECK_WITH_RELEASED(cudaMalloc(&dev_c, bytesSize), release);
 
-    printf("{1,2,3,4,5} + {10,20,30,40,50} = {%d,%d,%d,%d,%d}\n",
-        c[0], c[1], c[2], c[3], c[4]);
+	CHECK_WITH_RELEASED(cudaMemcpy(dev_a, &a[0], bytesSize,cudaMemcpyHostToDevice), release);
+	CHECK_WITH_RELEASED(cudaMemcpy(dev_b, &b[0], bytesSize,cudaMemcpyHostToDevice), release);
+	CHECK_WITH_RELEASED(cudaMemcpy(dev_c, &c[0], bytesSize,cudaMemcpyHostToDevice), release);
 
-    // cudaDeviceReset must be called before exiting in order for profiling and
-    // tracing tools such as Nsight and Visual Profiler to show complete traces.
-    cudaStatus = cudaDeviceReset();
-    if (cudaStatus != cudaSuccess) {
-        fprintf(stderr, "cudaDeviceReset failed!");
-        return 1;
-    }
+	//
+	addWithCuda(dev_a, dev_b, dev_c, nx, ny);
 
+	CHECK_WITH_RELEASED(cudaGetLastError(),release);
+
+	CHECK_WITH_RELEASED(cudaDeviceSynchronize(), release);
+	CHECK_WITH_RELEASED(cudaMemcpy(&c[0], dev_c, bytesSize,cudaMemcpyDeviceToHost), release);
+
+	release();
+    CHECK(cudaDeviceReset());
     return 0;
 }
