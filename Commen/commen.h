@@ -1,5 +1,13 @@
+/**************************************************************************
+Author		: xuwj
+Date                          : 2018/01/23 23:58
+Description	: 
+**************************************************************************/
+#ifndef COMMEN_H_
+#define COMMEN_H_
 #include <iostream>
 #include <chrono>
+#include <iostream>
 #define CLK  std::chrono::high_resolution_clock()
 
 #define CHECK(call) {\
@@ -19,3 +27,5 @@
 	} \
 }
 
+
+#endif //COMMEN_H_
