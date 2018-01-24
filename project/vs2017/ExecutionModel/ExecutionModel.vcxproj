@@ -12,11 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\ExecutionModel\main.cpp" />
+    <ClCompile Include="..\..\..\ExecutionModel\simpleDivergence.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="..\..\..\ExecutionModel\simpleDivergence.cu" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\ExecutionModel\simple.h" />
     <ClInclude Include="..\..\..\ExecutionModel\simpleDivergence.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

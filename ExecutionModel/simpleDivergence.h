@@ -7,6 +7,7 @@ Description	: simpleDivergenceÍ·ÎÄ¼þ
 #define SIMPLEDIVERGENCE_H_
 void call_mat_kernel1(float*c, int size, int block_size);
 void call_mat_kernel2(float*c, int size, int block_size);
-//void call_mat_kernel3(float*c, int size, int block_size);
-void call_warmingup(float* c,int size,int block_size){
+void call_mat_kernel3(float*c, int size, int block_size);
+void call_mat_kernel4(float*c, int size, int block_size);
+void call_warmingup(float* c, int size, int block_size);
 #endif //SIMPLEDIVERGENCE_H_

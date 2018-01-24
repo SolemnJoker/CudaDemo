@@ -8,7 +8,8 @@ Description	:
 #include <iostream>
 #include <chrono>
 #include <iostream>
-#define CLK  std::chrono::high_resolution_clock()
+#define CLK  std::chrono::high_resolution_clock::now()
+#define MS(end,start) ((end - start ).count()/10000000.0)
 
 #define CHECK(call) {\
 	const cudaError_t err = call; \
