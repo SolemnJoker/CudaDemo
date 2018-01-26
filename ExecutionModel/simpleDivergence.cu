@@ -25,6 +25,8 @@ void call_mat_kernel1(float*c ,int size,int block_size){
 }
 
 __global__ void mat_kernel2(float * c) {
+	//分支粒度是线程数大小warpSize的整数倍，防止线程束分化，
+	//但是返回的结果C数组里面的数据顺序和mat_kernel1不一样
     int i = blockDim.x * blockIdx.x + threadIdx.x;
     float a = 0;
     float b = 0;
