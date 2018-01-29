@@ -12,12 +12,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\ExecutionModel\main.cpp" />
+    <ClCompile Include="..\..\..\ExecutionModel\nestedReduce.cpp" />
     <ClCompile Include="..\..\..\ExecutionModel\simpleDivergence.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <CudaCompile Include="..\..\..\ExecutionModel\nestedReduce.cu">
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">compute_30,sm_30</CodeGeneration>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Release|x64'">compute_30,sm_30</CodeGeneration>
+    </CudaCompile>
     <CudaCompile Include="..\..\..\ExecutionModel\simpleDivergence.cu" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\ExecutionModel\nestedReduce.h" />
     <ClInclude Include="..\..\..\ExecutionModel\simple.h" />
     <ClInclude Include="..\..\..\ExecutionModel\simpleDivergence.h" />
   </ItemGroup>
@@ -74,6 +80,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
       <Optimization>Od</Optimization>
       <AdditionalCompilerOptions>
       </AdditionalCompilerOptions>
+      <CodeGeneration>compute_35,sm_35</CodeGeneration>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -100,6 +107,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
       <Optimization>Od</Optimization>
       <AdditionalCompilerOptions>
       </AdditionalCompilerOptions>
+      <CodeGeneration>compute_35,sm_35</CodeGeneration>
     </CudaCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

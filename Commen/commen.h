@@ -8,8 +8,11 @@ Description	:
 #include <iostream>
 #include <chrono>
 #include <iostream>
+//Ê±¼ä
+
 #define CLK  std::chrono::high_resolution_clock::now()
 #define MS(end,start) ((end - start ).count()/10000000.0)
+#define PTIME(start,info) std::cout<<info<<" :"<<MS(CLK,start)<<" ms"<<std::endl;
 
 #define CHECK(call) {\
 	const cudaError_t err = call; \
@@ -28,5 +31,8 @@ Description	:
 	} \
 }
 
+//vector
+#define VPTR(v) &v[0]
+#define VSIZE(v) v.size()*sizeof(v[0])
 
 #endif //COMMEN_H_

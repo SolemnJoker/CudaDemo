@@ -6,4 +6,5 @@ Description	: simpleµ÷ÓÃº¯Êý
 #ifndef SIMPLE_H_
 #define SIMPLE_H_
 void simpleDivergence(int argc,char** argv);
+void nestedReduce(int argc,char** argv);
 #endif //SIMPLE_H_
