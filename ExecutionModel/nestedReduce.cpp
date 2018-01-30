@@ -41,6 +41,7 @@ void nestedReduce(int argc, char** argv)
 	dim3 grid((nsize + block.x - 1)/block.x,1);
 	std::vector<int> h_idata(nsize);
 	std::vector<int> h_odata(grid.x);
+	initData(h_idata);
 
 	int* d_idata = NULL;
 	int* d_odata = NULL;

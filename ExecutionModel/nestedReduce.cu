@@ -3,7 +3,7 @@
 __global__ void neighboredReduce(int* g_idata,int* g_odata,int size) 
 {
     auto tid  = threadIdx.x;
-    auto g_idx = threadIdx.x + blockIdx.x*blockDim.x;
+	auto g_idx = threadIdx.x + blockIdx.x*blockDim.x;
 
     for(unsigned int stride = 1; stride < blockDim.x;stride *= 2)
     {
@@ -45,8 +45,9 @@ __global__ void gpuRecursiveReduce(int* g_idata, int* g_odata,int size)
     __syncthreads();
 }
 
-void call_recursive_reduce(int* g_idata, int* g_odata,int block,int grid)
+void call_recursive_reduce(int* g_idata, int* g_odata,dim3 block,dim3 grid)
 {
+
     gpuRecursiveReduce<<<grid,block>>>(g_idata,g_odata,block.x);
 }
 
